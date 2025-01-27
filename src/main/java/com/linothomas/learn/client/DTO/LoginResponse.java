@@ -1,5 +1,8 @@
 package com.linothomas.learn.client.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginResponse {
 
     private String message;
@@ -11,6 +14,8 @@ public class LoginResponse {
         this.token = token;
         this.error = error;
     }
+
+    public LoginResponse(){}
 
     public String getMessage() {
         return message;

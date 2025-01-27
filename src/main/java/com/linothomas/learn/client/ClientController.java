@@ -1,10 +1,13 @@
 package com.linothomas.learn.client;
 
 import ch.qos.logback.core.recovery.ResilientFileOutputStream;
+import com.linothomas.learn.client.DTO.LoginResponse;
 import com.linothomas.learn.client.DTO.RegisterRequest;
 import com.linothomas.learn.client.DTO.RegisterResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +42,18 @@ public class ClientController {
 
 
     @PostMapping(path = "/login")
-    public void login(){
+    public ResponseEntity<LoginResponse> login(@RequestHeader("Authorization") String authHeader){
+        LoginResponse resp = new LoginResponse();
+        try{
+            String token = cService.login(authHeader);
+            resp.setToken(token);
+            resp.setMessage("success");
+            return ResponseEntity.ok(resp);
+        } catch (Exception e){
+            resp.setError(e.getMessage());
+            resp.setMessage("failed");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(resp);
+        }
 
     }
 

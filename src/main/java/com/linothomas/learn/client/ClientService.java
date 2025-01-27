@@ -2,7 +2,6 @@ package com.linothomas.learn.client;
 
 import com.linothomas.learn.tokenClient.TokenClient;
 import com.linothomas.learn.tokenClient.TokenRepository;
-import org.antlr.v4.runtime.misc.LogManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

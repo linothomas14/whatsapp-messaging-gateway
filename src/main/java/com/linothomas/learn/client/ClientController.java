@@ -1,13 +1,11 @@
 package com.linothomas.learn.client;
 
-import ch.qos.logback.core.recovery.ResilientFileOutputStream;
 import com.linothomas.learn.client.DTO.LoginResponse;
 import com.linothomas.learn.client.DTO.RegisterRequest;
 import com.linothomas.learn.client.DTO.RegisterResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

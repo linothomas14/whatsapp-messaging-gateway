@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Base64;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,7 +26,13 @@ public class ClientService {
 
     }
 
-    public void register(Client c){
+    public void register(Client c) throws Exception{
+
+        Optional<Client> cExist = cRepository.findClientByUserName(c.getUserName());
+
+        if(cExist.isPresent()){
+             throw new Exception("Username already exist");
+        }
 
         String hashedPassword = passwordEncoder.encode(c.getPassword());
         c.setPassword(hashedPassword);

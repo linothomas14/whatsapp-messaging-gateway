@@ -33,7 +33,14 @@ public class ClientController {
         c.setTokenMeta(request.getTokenMeta());
         c.setUserName(request.getUserName());
 
-        cService.register(c);
+        try{
+            cService.register(c);
+        } catch(Exception e){
+            resp.setMessage("failed");
+            resp.setError(e.getMessage());
+            return ResponseEntity.status(401).body(resp);
+        }
+
 
         resp.setMessage("ok");
         return ResponseEntity.ok(resp);
